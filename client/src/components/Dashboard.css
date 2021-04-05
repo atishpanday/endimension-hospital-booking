@@ -38,7 +38,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    box-shadow: 0 0 100px 5px lightgray;
+    box-shadow: 0 0 100px 5px lightgreen;
+    border-radius: 0 0 5px 5px;
 }
 .appointment-heading-container{
     height: 100px;
@@ -47,6 +48,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    border-radius: 5px 5px 0 0;
 }
 .appointment-heading{
     color: whitesmoke;
@@ -66,6 +68,7 @@
 .timings{
     font-size: 20px;
     border: 2px solid lightgreen;
+    outline: none;
 }
 .book-appointment{
     width: 100%;

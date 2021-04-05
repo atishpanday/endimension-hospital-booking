@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import "./Home.css"
 import NavBar from "./NavBar"
+import Benefits from "./Benefits"
 import Footer from "./Footer"
 import { Link } from "react-router-dom"
 
@@ -21,6 +22,7 @@ const Home = () => {
                 <Link to = "/login"><button className = "book-btn">Book an appointment</button></Link>
             </div>
         </div>
+        <Benefits />
         <Footer />
         </>
     )
