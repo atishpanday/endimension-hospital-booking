@@ -1,0 +1,30 @@
+.nav-bar{
+    height: 60px;
+    width: 100%;
+    background: #00563b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-links-container{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.link{
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+.link:hover{
+    background: #93fd93;
+}

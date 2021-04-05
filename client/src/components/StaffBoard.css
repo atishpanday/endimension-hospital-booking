@@ -1,0 +1,35 @@
+.staff-board-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #daf8d1;
+}
+.staff-board{
+    height: 80%;
+    width: 70%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.staff-logout{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.staff-logout-btn{
+    height: 60px;
+    width: 200px;
+    background: #00563b;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}

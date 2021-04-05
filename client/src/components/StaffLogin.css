@@ -1,0 +1,57 @@
+.staff-login-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00563B;
+}
+.staff-login-card{
+    height: 70%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: whitesmoke;
+}
+.staff-login-form{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.staff-login-heading{
+    height: 60px;
+    font-size: 30px;
+    font-weight: 300;
+    color: #00563B;
+}
+.staff-fields{
+    height: 150px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.staff-field{
+    width: 100%;
+    height: 35px;
+    padding: 3px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+.staff-login-btn{
+    width: 60%;
+    height: 35px;
+    border: none;
+    border-radius: 2px;
+    background: #00563b;
+    font-size: 16px;
+    color: whitesmoke;
+    cursor: pointer;
+}

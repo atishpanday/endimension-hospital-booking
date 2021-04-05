@@ -1,0 +1,39 @@
+.footer-container{
+    height: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #daf8d1;
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+}
+.footer{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.footer-link{
+    cursor: pointer;
+    height: 22px;
+    width: 150px;
+    border-radius: 2px;
+    text-align: center;
+}
+.footer-link:hover{
+    background: white;
+}
+.staff-login{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.staff-login-link{
+    color: gray;
+    font-size: 16px;
+    cursor: pointer;
+}
