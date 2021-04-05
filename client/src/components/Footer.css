@@ -17,13 +17,10 @@
 }
 .footer-link{
     cursor: pointer;
-    height: 22px;
-    width: 150px;
-    border-radius: 2px;
     text-align: center;
 }
 .footer-link:hover{
-    background: white;
+    text-shadow: 2px 2px 2px green;
 }
 .staff-login{
     height: 200px;
@@ -33,7 +30,17 @@
     justify-content: center;
 }
 .staff-login-link{
+    height: 30px;
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
     color: gray;
     font-size: 16px;
     cursor: pointer;
+}
+.staff-login-link:hover{
+    color: black;
+    border: 2px solid gray;
 }
