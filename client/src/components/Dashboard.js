@@ -22,7 +22,8 @@ const Dashboard = () => {
                 timing: timingRef.current.value
             })
         })
-        if(res.ok){
+        const result = await res.json()
+        if(result.message === "success"){
             window.alert(`Your booking has been confirmed at ${timingRef.current.value}`)
         }
     }
@@ -40,7 +41,7 @@ const Dashboard = () => {
                 <div className = "timings-container">
                     <label for = "timings">Select a time slot for the appointment</label>
                     <select name = "timings" className = "timings" id = "timings" ref = {timingRef}>
-                        <option className = "slot a" value = "10 AM to 10.30 AM" disabled = {false}>10 AM to 10.30 AM</option>
+                        <option className = "slot a" value = "10 AM to 10.30 AM">10 AM to 10.30 AM</option>
                         <option className = "slot b" value = "10.30 AM to 11 AM">10.30 AM to 11 AM</option>
                         <option className = "slot c" value = "11 AM to 11.30 AM">11 AM to 11.30 AM</option>
                         <option className = "slot d" value = "11.30 AM to 12 Noon">11.30 AM to 12 Noon</option>

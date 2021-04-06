@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import './App.css'
 import Home from "./components/Home"
 import Login from "./components/Login"
 import Register from "./components/Register"
@@ -20,30 +19,46 @@ function App() {
 
   const [staffLoggedIn, setStaffLoggedIn] = useState(false)
 
-  const [bookings, setBookings] = useState([])
+  const bookedTimings = []
+  const bookedEmails = []
+
+  // const [bookings, setBookings] = useState([])
+
+  const fetchTimings = async () => {
+    const res = await fetch("http://localhost:5000/booked-timings")
+    const result = await res.json()
+    result.bookings.forEach(booking => {
+      bookedTimings.push(booking.timing)
+      bookedEmails.push(booking.email)
+    })
+  }
+  useEffect(() => {
+    fetchTimings()
+    window.alert("data fetched")
+  })
 
   useEffect(() => {
-    if(localStorage.getItem("email") !== null){
+    if (localStorage.getItem("email") !== null) {
       setLoggedIn(true)
     }
   }, [])
-  
+
   return (
-    <bookingContext.Provider value = {{bookings, setBookings}}>
-    <staffLoginContext.Provider value = {{staffLoggedIn, setStaffLoggedIn}}>
-    <loginContext.Provider value = {{loggedIn, setLoggedIn}}>
-    <Router>
-      <Switch>
-        <Route exact path = "/" render = {() => loggedIn ? <Redirect to = "/dashboard" /> : <Home /> } />
-        <Route exact path = "/login" render = {() => loggedIn ? <Redirect to = "/dashboard" /> : <Login />} />
-        <Route exact path = "/register" render = {() => loggedIn ? <Redirect to = "/dashboard" /> : <Register />} />
-        <Route exact path = "/dashboard" render = {() => loggedIn ? <Dashboard /> : <Redirect to = "/" />} />
-        <Route exact path = "/staff-login" render = {() => staffLoggedIn ? <Redirect to = "/staff-board" /> : <StaffLogin />} />
-        <Route exact path = "/staff-board" render = {() => staffLoggedIn ? <StaffBoard /> : <Redirect to = "/staff-login" />} />
-      </Switch>
-    </Router>
-    </loginContext.Provider>
-    </staffLoginContext.Provider>
+    <bookingContext.Provider value={bookedTimings}>
+      <staffLoginContext.Provider value={{ staffLoggedIn, setStaffLoggedIn }}>
+        <loginContext.Provider value={{ loggedIn, setLoggedIn }}>
+          <Router>
+            <Switch>
+              <Route exact path="/" render={() => loggedIn ? <Redirect to="/dashboard" /> : <Home />} />
+              <Route exact path="/login" render={() => loggedIn ? <Redirect to="/dashboard" /> : <Login />} />
+              <Route exact path="/register" render={() => loggedIn ? <Redirect to="/dashboard" /> : <Register />} />
+              <Route exact path="/dashboard" render={() => loggedIn ? <Dashboard /> : <Redirect to="/" />} />
+              <Route exact path="/staff-login" render={() => staffLoggedIn ? <Redirect to="/staff-board" /> : <StaffLogin />} />
+              <Route exact path="/staff-board" render={() => staffLoggedIn ? <StaffBoard /> : <Redirect to="/staff-login" />} />
+            </Switch>
+          </Router>
+        </loginContext.Provider>
+      </staffLoginContext.Provider>
     </bookingContext.Provider>
   )
 }

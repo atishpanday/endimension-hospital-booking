@@ -10,6 +10,8 @@ const port = 5000
 
 const users = [{ email: 'foo@foo.com', password: 'foo' }]
 
+const bookings = [{ email: 'foo@foo.com', timing: '11 AM to 11.30 AM' }]
+
 server.post("/register", (req, res) => {
     try {
         const user = {
@@ -41,6 +43,24 @@ server.post("/login", (req, res) => {
     } catch (err) {
         res.status(500).send()
     }
+})
+
+server.post("/booking", (req, res) => {
+    try {
+        const booking = {
+            email: req.body.email,
+            timing: req.body.timing
+        }
+        bookings.push(booking)
+        console.log(bookings)
+        res.json({message: "success"})
+    } catch (err) {
+        res.sendStatus(500)
+    }
+})
+
+server.get("/booked-timings", (req, res) => {
+    res.json({bookings: bookings})
 })
 
 server.listen(port, () => {
