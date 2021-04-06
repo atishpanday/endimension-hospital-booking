@@ -1,23 +1,36 @@
 import React, { useRef, useContext } from 'react'
-import { loginContext, bookingContext } from "../App"
+import { loginContext } from "../App"
 import "./Dashboard.css"
 
 const Dashboard = () => {
+    const emailId = localStorage.getItem("email")
     const timingRef = useRef("")
     const value = useContext(loginContext)
-    const bookingValue = useContext(bookingContext)
     const reqLogout = (e) => {
         e.preventDefault()
         value.setLoggedIn(false)
+        localStorage.removeItem("email")
     }
-    const reqBooking = () => {
-        window.alert(`Your booking has been confirmed at ${timingRef.current.value}`)
-        bookingValue.setBookings(oldArray => [...oldArray, timingRef.current.value])
+    const reqBooking = async () => {
+        const res = await fetch("http://localhost:5000/booking",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailId,
+                timing: timingRef.current.value
+            })
+        })
+        if(res.ok){
+            window.alert(`Your booking has been confirmed at ${timingRef.current.value}`)
+        }
     }
     console.log(timingRef.current.value)
     return (
         <div className = "dashboard-container">
             <div className = "logout">
+                <div className = "email-id">{emailId}</div>
                 <button className = "logout-btn" onClick = {reqLogout}>Log out</button>
             </div>
             <div className = "dashboard">

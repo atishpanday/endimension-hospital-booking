@@ -1,28 +1,49 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Link } from "react-router-dom"
 import { loginContext } from "../App"
 import "./Register.css"
 
 const Register = () => {
 
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
     const value = useContext(loginContext)
-    const reqReg = (e) => {
+    const reqReg = async (e) => {
         e.preventDefault()
-        value.setLoggedIn(true)
+        if (passwordRef.current.value === passwordConfirmRef.current.value) {
+            const res = await fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: emailRef.current.value,
+                    password: passwordRef.current.value
+                })
+            })
+
+            if (res.ok) {
+                value.setLoggedIn(true)
+                localStorage.setItem("email", emailRef.current.value)
+            }
+        } else {
+            window.alert("Passwords don't match")
+        }
     }
     return (
-        <div className = "register-container">
-            <div className = "register-card">
-                <form className = "register-form" onSubmit = {reqReg}>
-                    <div className = "register-heading">Register</div>
-                    <div className = "reg-fields">
-                        <input required type = "email" className = "email reg-field" placeholder = "Email"></input>
-                        <input required type = "password" className = "password reg-field" placeholder = "Password"></input>
-                        <input required type = "password" className = "confirm-password reg-field" placeholder = "Confirm Password"></input>
+        <div className="register-container">
+            <div className="register-card">
+                <form className="register-form" onSubmit={reqReg}>
+                    <div className="register-heading">Register</div>
+                    <div className="reg-fields">
+                        <input required type="email" className="email reg-field" placeholder="Email" ref = {emailRef}></input>
+                        <input required type="password" className="password reg-field" placeholder="Password" ref = {passwordRef}></input>
+                        <input required type="password" className="confirm-password reg-field" placeholder="Confirm Password" ref = {passwordConfirmRef}></input>
                     </div>
-                    <button type = "submit" className = "register-btn">Register</button>
+                    <button type="submit" className="register-btn">Register</button>
                 </form>
-                <div className = "login-prompt">Already registered? Login <Link to = "/login" style = {{ color: "blue", cursor: "pointer", textDecoration: "none"}}>here</Link></div>
+                <div className="login-prompt">Already registered? Login <Link to="/login" style={{ color: "blue", cursor: "pointer", textDecoration: "none" }}>here</Link></div>
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import './App.css'
 import Home from "./components/Home"
 import Login from "./components/Login"
@@ -21,6 +21,12 @@ function App() {
   const [staffLoggedIn, setStaffLoggedIn] = useState(false)
 
   const [bookings, setBookings] = useState([])
+
+  useEffect(() => {
+    if(localStorage.getItem("email") !== null){
+      setLoggedIn(true)
+    }
+  }, [])
   
   return (
     <bookingContext.Provider value = {{bookings, setBookings}}>
