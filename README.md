@@ -1,4 +1,4 @@
-This simple front end deployment of a Hospital Booking website uses React.js to combine various components:
+This simple front end + backend deployment of a Hospital Booking website uses React.js to combine various components:
 
 1) Home
 2) Login
