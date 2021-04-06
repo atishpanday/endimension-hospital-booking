@@ -11,31 +11,31 @@ export const loginContext = React.createContext()
 
 export const staffLoginContext = React.createContext()
 
-export const bookingContext = React.createContext()
-
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false)
 
   const [staffLoggedIn, setStaffLoggedIn] = useState(false)
 
-  const bookedTimings = []
-  const bookedEmails = []
+  // const bookedTimings = useRef([])
+  // const bookedEmails = useRef([])
 
   // const [bookings, setBookings] = useState([])
 
-  const fetchTimings = async () => {
-    const res = await fetch("http://localhost:5000/booked-timings")
-    const result = await res.json()
-    result.bookings.forEach(booking => {
-      bookedTimings.push(booking.timing)
-      bookedEmails.push(booking.email)
-    })
-  }
-  useEffect(() => {
-    fetchTimings()
-    window.alert("data fetched")
-  })
+  // const fetchTimings = async () => {
+  //   const res = await fetch("http://localhost:5000/booked-timings")
+  //   const result = await res.json()
+  //   // result.bookings.forEach(booking => {
+  //     // setbookedTimings(old => [...old, booking.timing])
+  //     // setbookedEmails(old => [...old, booking.email])
+  //     // bookedEmails.push(booking.email)
+  //     // bookedTimings.push(booking.timings)
+  //   // })
+  //   console.log(result)
+  // }
+  // useEffect(() => {
+  //   fetchTimings()
+  // })
 
   useEffect(() => {
     if (localStorage.getItem("email") !== null) {
@@ -44,7 +44,6 @@ function App() {
   }, [])
 
   return (
-    <bookingContext.Provider value={bookedTimings}>
       <staffLoginContext.Provider value={{ staffLoggedIn, setStaffLoggedIn }}>
         <loginContext.Provider value={{ loggedIn, setLoggedIn }}>
           <Router>
@@ -59,7 +58,6 @@ function App() {
           </Router>
         </loginContext.Provider>
       </staffLoginContext.Provider>
-    </bookingContext.Provider>
   )
 }
 

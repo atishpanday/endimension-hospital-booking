@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
 import { loginContext } from "../App"
 import "./Dashboard.css"
 
@@ -27,7 +27,21 @@ const Dashboard = () => {
             window.alert(`Your booking has been confirmed at ${timingRef.current.value}`)
         }
     }
-    console.log(timingRef.current.value)
+    const disableBookedTimings = async () => {
+        const res = await fetch("http://localhost:5000/booked-timings")
+        const result = await res.json()
+        result.bookings.forEach(booking => {
+            document.querySelectorAll(".slot").forEach(slot => {
+                if(slot.innerHTML === booking.timing){
+                    slot.setAttribute("disabled", true)
+                }
+            })
+        })
+    }
+
+    useEffect(() => {
+        disableBookedTimings()
+    }, [])
     return (
         <div className = "dashboard-container">
             <div className = "logout">

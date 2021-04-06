@@ -1,15 +1,14 @@
 import React, { useContext } from 'react'
 import "./StaffBoard.css"
-import { bookingContext, staffLoginContext } from "../App"
+import { staffLoginContext } from "../App"
 
 const StaffBoard = () => {
 
     const value = useContext(staffLoginContext)
-    const bookingValue = useContext(bookingContext)
     const reqStaffLogout = () => {
         value.setStaffLoggedIn(false)
     }
-    console.log(bookingValue)
+    
     return (
         <div className="staff-board-container">
             <div className="staff-board">
