@@ -1,0 +1,48 @@
+const express = require("express")
+const server = express()
+const cors = require("cors")
+
+server.use(express.json())
+
+server.use(cors())
+
+const port = 5000
+
+const users = [{ email: 'foo@foo.com', password: 'foo' }]
+
+server.post("/register", (req, res) => {
+    try {
+        const user = {
+            email: req.body.email,
+            password: req.body.password
+        }
+        users.push(user)
+        console.log(users)
+        res.json({message: "success"})
+    } catch (err) {
+        res.sendStatus(500)
+    }
+})
+
+server.post("/login", (req, res) => {
+    try {
+        const user = {
+            email: req.body.email,
+            password: req.body.password
+        }
+        console.log(user)
+        if (users.filter(item => item.email === user.email && item.password === user.password)) {
+            console.log("Logged in")
+            res.json({message: "success"})
+        } else {
+            console.log("could not login")
+            res.status(403).send()
+        }
+    } catch (err) {
+        res.status(500).send()
+    }
+})
+
+server.listen(port, () => {
+    console.log("server is listening at port " + port)
+})

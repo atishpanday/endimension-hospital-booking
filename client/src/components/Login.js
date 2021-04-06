@@ -20,9 +20,11 @@ const Login = () => {
                 password: passwordRef.current.value
             })
         })
-        if(res.ok){
-            value.setLoggedIn(true)
+        const result = await res.json()
+        if(result.message === "success"){
             localStorage.setItem("email", emailRef.current.value)
+            value.setLoggedIn(true)
+            window.alert("Logged in")
         }
     }
     return (

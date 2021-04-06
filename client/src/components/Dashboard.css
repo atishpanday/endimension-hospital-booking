@@ -11,10 +11,14 @@
     top: 0;
     right: 0;
     height: 60px;
-    width: 100px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.email-id{
+    color: #00563b;
+    margin: 5px;
 }
 .logout-btn{
     height: 40px;
