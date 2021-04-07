@@ -23,12 +23,12 @@ const Register = () => {
                 })
             })
 
-            const result = await res.json()
-
-            if (result.message === "success") {
+            if (res.ok) {
                 localStorage.setItem("email", emailRef.current.value)
                 value.setLoggedIn(true)
                 window.alert("Registered")
+            } else {
+                window.alert("An error occurred")
             }
         } else {
             window.alert("Passwords don't match")

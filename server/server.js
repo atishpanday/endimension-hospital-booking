@@ -33,9 +33,9 @@ server.post("/login", (req, res) => {
             password: req.body.password
         }
         console.log(user)
-        if (users.filter(item => item.email === user.email && item.password === user.password)) {
+        if (users.filter(item => item.email === user.email && item.password === user.password).length !== 0) {
             console.log("Logged in")
-            res.json({message: "success"})
+            res.sendStatus(201)
         } else {
             console.log("could not login")
             res.status(403).send()

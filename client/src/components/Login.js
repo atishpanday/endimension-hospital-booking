@@ -20,11 +20,12 @@ const Login = () => {
                 password: passwordRef.current.value
             })
         })
-        const result = await res.json()
-        if(result.message === "success"){
+        if(res.ok){
             localStorage.setItem("email", emailRef.current.value)
             value.setLoggedIn(true)
             window.alert("Logged in")
+        } else {
+            window.alert("User not found. Please register.")
         }
     }
     return (
