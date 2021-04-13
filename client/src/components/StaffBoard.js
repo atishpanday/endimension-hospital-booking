@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import "./StaffBoard.css"
 import { staffLoginContext } from "../App"
 
@@ -10,17 +10,20 @@ const StaffBoard = () => {
         value.setStaffLoggedIn(false)
     }
 
-    // const [bookings, setBookings] = useState([])
+    const bookings = useRef([])
+    // const bookings = []
+    const [loading, setLoading] = useState(true)
 
-    const bookingsRef = useRef()
+    const sampleRef = useRef(["a", "b", "c"])
 
     const getBookings = async () => {
         const res = await fetch("http://localhost:5000/booked-timings")
         const result = await res.json()
         for(const item in result){
-            // setBookings(old => [...old, item])
-            bookingsRef.current.innerHTML += "<h4>" + result[item].email + " : " + result[item].timing + "</h4>"
+            bookings.current.push(result[item].email + " : " + result[item].timing)
         }
+        console.log(bookings.current)
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -34,8 +37,11 @@ const StaffBoard = () => {
                     <h1>Bookings for today</h1>
                 </div>
             </div>
-            <div className = "bookings" ref = {bookingsRef}>
-
+            <div className = "bookings">
+                {!loading && bookings.current.map((item, i) => (
+                    <h4 key = {i}>{item}</h4>
+                    )
+                )}
             </div>
             <div className="staff-logout">
                 <button className="staff-logout-btn" onClick={reqStaffLogout}>Log out</button>

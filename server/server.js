@@ -52,7 +52,6 @@ server.post("/booking", (req, res) => {
             timing: req.body.timing
         }
         bookings.push(booking)
-        console.log(bookings)
         res.json({message: "success"})
     } catch (err) {
         res.sendStatus(500)
