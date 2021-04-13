@@ -30,13 +30,13 @@ const Dashboard = () => {
     const disableBookedTimings = async () => {
         const res = await fetch("http://localhost:5000/booked-timings")
         const result = await res.json()
-        result.bookings.forEach(booking => {
+            for( const booking in result ) {
             document.querySelectorAll(".slot").forEach(slot => {
-                if(slot.innerHTML === booking.timing){
+                if(slot.innerHTML === result[booking].timing){
                     slot.setAttribute("disabled", true)
                 }
             })
-        })
+        }
     }
 
     useEffect(() => {
