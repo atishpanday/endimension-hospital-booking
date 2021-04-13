@@ -53,7 +53,7 @@ function App() {
               <Route exact path="/register" render={() => loggedIn ? <Redirect to="/dashboard" /> : <Register />} />
               <Route exact path="/dashboard" render={() => loggedIn ? <Dashboard /> : <Redirect to="/" />} />
               <Route exact path="/staff-login" render={() => staffLoggedIn ? <Redirect to="/staff-board" /> : <StaffLogin />} />
-              <Route exact path="/staff-board" render={() => true ? <StaffBoard /> : <Redirect to="/staff-login" />} />
+              <Route exact path="/staff-board" render={() => staffLoggedIn ? <StaffBoard /> : <Redirect to="/staff-login" />} />
             </Switch>
           </Router>
         </loginContext.Provider>

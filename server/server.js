@@ -10,11 +10,7 @@ const port = 5000
 
 const users = []
 
-const bookings = [
-   {email: "abc@abc.com", timing: "10AM to 10.30AM"},
-   {email: "foo@foo.com", timing: "11AM to 11.30AM"},
-   {email: "doo@doo.com", timing: "5PM to 5.30PM"},
-]
+const bookings = []
 
 server.post("/register", (req, res) => {
     try {
